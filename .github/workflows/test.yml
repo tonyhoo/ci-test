@@ -33,7 +33,7 @@ jobs:
       - name: Setup Env Vars
         uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
       - name: Build Multimodal Tutorial on AWS Batch
-        uses: ./.github/actions/submit-job
+        uses: tonyhoo/autogluon/.github/actions/submit-job@6339c8cbddffebdbfac99134d933874062354a92
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildMultimodal
