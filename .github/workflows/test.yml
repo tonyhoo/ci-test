@@ -31,4 +31,4 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
-        uses: autogluon/autogluon/.github/actions/setup-env-vars
+        uses: autogluon/autogluon/.github/actions/setup-env-vars@ee393aed7face7ff59198a17e17de0ec5e38f38d
