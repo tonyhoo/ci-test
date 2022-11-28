@@ -25,23 +25,16 @@ defaults:
     shell: bash
 
 jobs:
-  copy-docs:
+  build_multimodal_tutorial:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
-        uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
-      - name: Copy Docs to Bucket(For push)
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          chmod +x .github/workflow_scripts/copy_docs.sh
-          ./.github/workflow_scripts/copy_docs.sh '${{ github.ref }}' '${{ github.repository }}' '${{ env.SHORT_SHA }}'
-      - name: Copy Docs to Bucket(For pull request)
-        if: ${{ github.event_name == 'pull_request_target' }}
-        env:
-          branch: ${{ github.event.pull_request.head.ref }}
-        run: |
-          chmod +x ./.github/workflow_scripts/copy_docs.sh
-          ./.github/workflow_scripts/copy_docs.sh "$branch" '${{ github.event.pull_request.head.repo.full_name }}' '${{ env.SHORT_SHA }}' PR-'${{ github.event.number }}'
-     
+        uses: ./.github/actions/setup-env-vars
+      - name: Build Multimodal Tutorial on AWS Batch
+        uses: ./.github/actions/submit-job
+        with:
+          job-type: CI-GPU
+          job-name: AutoGluon-BuildMultimodal
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
