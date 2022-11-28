@@ -26,7 +26,6 @@ defaults:
 
 jobs:
   copy-docs:
-    needs: build_all_docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
