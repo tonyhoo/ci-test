@@ -25,18 +25,24 @@ defaults:
     shell: bash
 
 jobs:
-  check_fix:
+  copy-docs:
+    needs: build_all_docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
-        uses: autogluon/autogluon/.github/actions/setup-env-vars@ee393aed7face7ff59198a17e17de0ec5e38f38d
-  repro_issue:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Setup Env Vars
-        uses: autogluon/autogluon/.github/actions/setup-env-vars@fcbb5f33eafb847018b71deb849ce3be338ebaa0
-
+        uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
+      - name: Copy Docs to Bucket(For push)
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          chmod +x ./.github/workflow_scripts/copy_docs.sh
+          ./.github/workflow_scripts/copy_docs.sh '${{ github.ref }}' '${{ github.repository }}' '${{ env.SHORT_SHA }}'
+      - name: Copy Docs to Bucket(For pull request)
+        if: ${{ github.event_name == 'pull_request_target' }}
+        env:
+          branch: ${{ github.event.pull_request.head.ref }}
+        run: |
+          chmod +x ./.github/workflow_scripts/copy_docs.sh
+          ./.github/workflow_scripts/copy_docs.sh "$branch" '${{ github.event.pull_request.head.repo.full_name }}' '${{ env.SHORT_SHA }}' PR-'${{ github.event.number }}'
+     
