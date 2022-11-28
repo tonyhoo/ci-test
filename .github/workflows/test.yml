@@ -25,10 +25,18 @@ defaults:
     shell: bash
 
 jobs:
-  build_tabular_prediction_tutorial:
+  check_fix:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
         uses: autogluon/autogluon/.github/actions/setup-env-vars@ee393aed7face7ff59198a17e17de0ec5e38f38d
+  repro_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Env Vars
+        uses: autogluon/autogluon/.github/actions/setup-env-vars@fcbb5f33eafb847018b71deb849ce3be338ebaa0
+
