@@ -31,7 +31,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
-        uses: ./.github/actions/setup-env-vars
+        uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
       - name: Build Multimodal Tutorial on AWS Batch
         uses: ./.github/actions/submit-job
         with:
