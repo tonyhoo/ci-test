@@ -1,0 +1,34 @@
+name: Security Test
+
+on:
+  push:
+    paths-ignore:
+      - 'cloud/**'
+      - '.github/workflows/cloud_continuous_integration.yml'
+      - '.github/workflow_scripts/test_cloud.sh'
+    pull_request_target:
+      paths-ignore:
+        - 'cloud/**'
+        - '.github/workflows/cloud_continuous_integration.yml'
+        - '.github/workflow_scripts/test_cloud.sh'
+    pull_request:
+      paths-ignore:
+        - 'cloud/**'
+        - '.github/workflows/cloud_continuous_integration.yml'
+        - '.github/workflow_scripts/test_cloud.sh'
+permissions:
+  id-token: write
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build_tabular_prediction_tutorial:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Env Vars
+        uses: autogluon/autogluon/.github/actions/setup-env-vars@fcbb5f33eafb847018b71deb849ce3be338ebaa0
