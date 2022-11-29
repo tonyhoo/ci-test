@@ -13,4 +13,4 @@ PR_NUMBER=$5 # For push events, PR_NUMBER will be empty
 source $(dirname "$0")/env_setup.sh
 source $(dirname "$0")/build_doc.sh
 
-if [[ -n "$SUB_DOC" ]]; then build_doc multimodal $BRANCH $GIT_REPO $COMMIT_SHA $PR_NUMBER $SUB_DOC; else build_doc multimodal $BRANCH $GIT_REPO $COMMIT_SHA $PR_NUMBER; fi
+build_doc multimodal $BRANCH $GIT_REPO $COMMIT_SHA ${PR_NUMBER:-""} $SUB_DOC
