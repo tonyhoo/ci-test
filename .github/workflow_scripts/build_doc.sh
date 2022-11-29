@@ -3,8 +3,8 @@ function build_doc {
     BRANCH="$2"
     GIT_REPO="$3"
     COMMIT_SHA="$4"
-    PR_NUMBER="$5"  # For push events, PR_NUMBER will be empty
-    SUB_DOC="$6"  # Can be empty
+    PR_NUMBER=${5: -''}  # For push events, PR_NUMBER will be empty
+    SUB_DOC=${6: -''}  # Can be empty
 
     source $(dirname "$0")/write_to_s3.sh
     source $(dirname "$0")/setup_mmcv.sh
