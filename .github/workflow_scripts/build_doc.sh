@@ -10,7 +10,7 @@ function build_doc {
 
     setup_build_contrib_env
     bash docs/build_pip_install.sh
-    setup_mmcv
+    # setup_mmcv
     # only build for docs/$DOC
     rm -rf ./docs/tutorials/!($DOC)
     cd docs && rm -rf _build && d2lbook build rst
