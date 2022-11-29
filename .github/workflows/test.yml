@@ -27,46 +27,92 @@ defaults:
 jobs:
   build_multimodal_advanced_topics_tutorial:
     runs-on: ubuntu-latest
+    env:
+      SUB_DOC: advanced_topics
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
-        uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
+        uses: ./.github/actions/setup-env-vars
       - name: Build Multimodal Tutorial on AWS Batch
-        uses: tonyhoo/autogluon/.github/actions/submit-job@6339c8cbddffebdbfac99134d933874062354a92
-        env:
-          SUB_DOC: advanced_topics
+        uses: ./.github/actions/submit-job
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildMultimodal
-          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh  "$SUB_DOC" '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' 
-  
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh $SUB_DOC '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
   build_multimodal_image_prediction_tutorial:
     runs-on: ubuntu-latest
+    env:
+      SUB_DOC: image_prediction
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
-        uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
+        uses: ./.github/actions/setup-env-vars
       - name: Build Multimodal Tutorial on AWS Batch
-        uses: tonyhoo/autogluon/.github/actions/submit-job@6339c8cbddffebdbfac99134d933874062354a92
-        env:
-          SUB_DOC: image_prediction
+        uses: ./.github/actions/submit-job
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildMultimodal
-          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh "$SUB_DOC" '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' 
-
-  build_tabular_prediction_tutorial:
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh $SUB_DOC '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+  build_multimodal_matching_tutorial:
     runs-on: ubuntu-latest
+    env:
+      SUB_DOC: matching
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Setup Env Vars
-        uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
-      - name: Build Tabular Prediction Tutorial on AWS Batch
-        uses: tonyhoo/autogluon/.github/actions/submit-job@6339c8cbddffebdbfac99134d933874062354a92
+        uses: ./.github/actions/setup-env-vars
+      - name: Build Multimodal Tutorial on AWS Batch
+        uses: ./.github/actions/submit-job
         with:
           job-type: CI-GPU
-          job-name: AutoGluon-BuildTabularPrediction
-          command: chmod +x ./.github/workflow_scripts/build_tabular_prediction_tutorial.sh && ./.github/workflow_scripts/build_tabular_prediction_tutorial.sh '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+          job-name: AutoGluon-BuildMultimodal
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh $SUB_DOC '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+  build_multimodal_prediction_tutorial:
+    runs-on: ubuntu-latest
+    env:
+      SUB_DOC: multimodal_prediction
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Env Vars
+        uses: ./.github/actions/setup-env-vars
+      - name: Build Multimodal Tutorial on AWS Batch
+        uses: ./.github/actions/submit-job
+        with:
+          job-type: CI-GPU
+          job-name: AutoGluon-BuildMultimodal
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh $SUB_DOC '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+
+  build_multimodal_object_detection_tutorial:
+    runs-on: ubuntu-latest
+    env:
+      SUB_DOC: object_detection
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Env Vars
+        uses: ./.github/actions/setup-env-vars
+      - name: Build Multimodal Tutorial on AWS Batch
+        uses: ./.github/actions/submit-job
+        with:
+          job-type: CI-GPU
+          job-name: AutoGluon-BuildMultimodal
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh $SUB_DOC '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+  build_multimodal_text_prediction_tutorial:
+    runs-on: ubuntu-latest
+    env:
+      SUB_DOC: text_prediction
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Env Vars
+        uses: ./.github/actions/setup-env-vars
+      - name: Build Multimodal Tutorial on AWS Batch
+        uses: ./.github/actions/submit-job
+        with:
+          job-type: CI-GPU
+          job-name: AutoGluon-BuildMultimodal
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh $SUB_DOC '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
