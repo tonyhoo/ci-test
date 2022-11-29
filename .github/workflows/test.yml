@@ -34,10 +34,12 @@ jobs:
         uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
       - name: Build Multimodal Tutorial on AWS Batch
         uses: tonyhoo/autogluon/.github/actions/submit-job@6339c8cbddffebdbfac99134d933874062354a92
+        env:
+          SUB_DOC: advanced_topics
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildMultimodal
-          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh  'advanced_topics' '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' 
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh  "$SUB_DOC" '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' 
   
   build_multimodal_image_prediction_tutorial:
     runs-on: ubuntu-latest
@@ -48,10 +50,12 @@ jobs:
         uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
       - name: Build Multimodal Tutorial on AWS Batch
         uses: tonyhoo/autogluon/.github/actions/submit-job@6339c8cbddffebdbfac99134d933874062354a92
+        env:
+          SUB_DOC: image_prediction
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildMultimodal
-          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh 'image_prediction' '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' 
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh "$SUB_DOC" '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' 
 
   build_tabular_prediction_tutorial:
     runs-on: ubuntu-latest
