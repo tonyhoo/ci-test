@@ -65,4 +65,4 @@ jobs:
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildTabularPrediction
-          command: chmod +x ./.github/workflow_scripts/build_tabular_prediction_tutorialP.sh && ./.github/workflow_scripts/build_tabular_prediction_tutorial.sh '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+          command: chmod +x ./.github/workflow_scripts/build_tabular_prediction_tutorial.sh && ./.github/workflow_scripts/build_tabular_prediction_tutorial.sh '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
