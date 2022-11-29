@@ -37,7 +37,7 @@ jobs:
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildMultimodal
-          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh "advanced_topics" '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' "advanced_topics"
   
   build_multimodal_image_prediction_tutorial:
     runs-on: ubuntu-latest
@@ -51,4 +51,18 @@ jobs:
         with:
           job-type: CI-GPU
           job-name: AutoGluon-BuildMultimodal
-          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh "image_prediction" '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
+          command: chmod +x ./.github/workflow_scripts/build_multimodal_tutorial.sh && ./.github/workflow_scripts/build_multimodal_tutorial.sh '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}' "image_prediction"
+
+  build_tabular_prediction_tutorial:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Env Vars
+        uses: tonyhoo/autogluon/.github/actions/setup-env-vars@6339c8cbddffebdbfac99134d933874062354a92
+      - name: Build Tabular Prediction Tutorial on AWS Batch
+        uses: tonyhoo/autogluon/.github/actions/submit-job@6339c8cbddffebdbfac99134d933874062354a92
+        with:
+          job-type: CI-GPU
+          job-name: AutoGluon-BuildTabularPrediction
+          command: chmod +x ./.github/workflow_scripts/build_tabular_prediction_tutorial.sh && ./.github/workflow_scripts/build_tabular_prediction_tutorial.sh '${{ env.BRANCH }}' '${{ env.GIT_REPO }}' '${{ env.SHORT_SHA }}' '${{ env.PR_NUMBER }}'
